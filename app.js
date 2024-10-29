@@ -22,8 +22,6 @@ if (require.main === module) {
     });
 }
 
-module.exports = app;
-
 let wallets = [];
 let subscriptions = [];
 
