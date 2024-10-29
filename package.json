@@ -1,0 +1,18 @@
+{
+  "name": "telegramsolanabot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "bun run index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@solana/web3.js": "^1.95.4",
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
