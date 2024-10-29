@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "vercel-build": "echo hellow"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
