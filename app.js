@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { Connection, PublicKey } = require('@solana/web3.js');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require("axios")
@@ -5,10 +6,20 @@ const express = require("express")
 const token = process.env.TOKEN_TELEGRAM
 const rpc_solana_url = process.env.RPC_URL
 const connection = new Connection(rpc_solana_url);
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(token);
 
 const app = express()
 const port = 3000
+
+app.post(`/webhook/${token}`, (req, res) => {
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+});
+
+if (process.env.NODE_ENV === 'production') {
+    const webhookUrl = `https://telegram-solana-bot.vercel.app/webhook/${token}`;
+    bot.setWebHook(webhookUrl);
+}
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
