@@ -379,3 +379,5 @@ wallets.forEach(wallet => {
     trackWalletTransactions(wallet.address);
 });
 
+module.exports = app;
+
