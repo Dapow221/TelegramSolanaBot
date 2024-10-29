@@ -1,4 +1,3 @@
-require("dotenv").config()
 const { Connection, PublicKey } = require('@solana/web3.js');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require("axios")
@@ -9,18 +8,15 @@ const connection = new Connection(rpc_solana_url);
 const bot = new TelegramBot(token, { polling: true });
 
 const app = express()
+const port = 3000
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-
-if (require.main === module) {
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
-}
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
 
 let wallets = [];
 let subscriptions = [];
