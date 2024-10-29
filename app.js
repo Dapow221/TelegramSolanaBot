@@ -4,20 +4,25 @@ const TelegramBot = require('node-telegram-bot-api');
 const axios = require("axios")
 const express = require("express")
 const token = process.env.TOKEN_TELEGRAM
-const rpc_solana_url = "https://mainnet.helius-rpc.com/?api-key=9bfa9060-81f8-49ff-97b0-080d019f8caf"
+const rpc_solana_url = process.env.RPC_URL
 const connection = new Connection(rpc_solana_url);
 const bot = new TelegramBot(token, { polling: true });
 
 const app = express()
-const port = 3000
 
-app.get('/', (res) => {
+app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
 
 let wallets = [];
 let subscriptions = [];
@@ -380,4 +385,5 @@ wallets.forEach(wallet => {
 });
 
 module.exports = app;
+
 
